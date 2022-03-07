@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rent_app/pages/detail.dart';
-import 'package:rent_app/pages/sign_up.dart';
+import 'package:rent_app/modules/apartments/pages/detail.dart';
+import 'package:rent_app/modules/user/pages/login.dart';
+import 'package:rent_app/modules/user/pages/sign_up.dart';
 import 'package:rent_app/shared/widget.dart';
+import 'package:rent_app/shared_preferences/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -44,16 +46,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _rowTitle() {
+            var userPreferences = UserPreferences();
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       const Text("Explore",
           style: TextStyle(
               color: Colors.black, fontWeight: FontWeight.w600, fontSize: 30)),
       IconButton(
           onPressed: () {
-            final route = MaterialPageRoute(builder: (context) => SignUpPage());
+            final route = MaterialPageRoute(builder: (context) => SignUpPage() );
             Navigator.push(context, route);
           },
-          icon: Icon(Icons.account_circle))
+          icon:  Icon(Icons.account_circle, 
+          color: userPreferences.login?Colors.green:Colors.black45 
+          ))
     ]);
   }
 
@@ -95,8 +100,7 @@ class _HomePageState extends State<HomePage> {
         Row(
           children: const [
             Text("Ansgus Gorrie Soft",
-                style: TextStyle(
-                    fontFamily: 'Kanit',
+                style: TextStyle(                    
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 20)),
@@ -110,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 //fontSize: 24
               ))
         ]),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         _apartmenList()

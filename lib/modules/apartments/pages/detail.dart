@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rent_app/pages/home.dart';
+import 'package:rent_app/modules/apartments/pages/home.dart';
 import 'package:rent_app/shared/widget.dart';
 
 class DetailPage extends StatefulWidget {
@@ -50,6 +50,7 @@ class _DetailPageState extends State<DetailPage> {
                 child: Image.network(
                     "https://picsum.photos/seed/${widget.index}/800"),
                 borderRadius: BorderRadius.circular(25)),
+            //child: FadeInImage(image: , ),
           ),
         ),
       ],
