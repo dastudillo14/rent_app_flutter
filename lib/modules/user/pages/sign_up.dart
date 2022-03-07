@@ -138,11 +138,11 @@ class _SignUpPageState extends State<SignUpPage> {
               if (_formUser.invalid) {
                 _formUser.markAllAsTouched();
               } else {
-                final userPreferences = UserPreferences();
-                userPreferences.user = User.fromJson(_formUser.value);
-                final route =
-                    MaterialPageRoute(builder: (context) => LoginPage());
-                Navigator.push(context, route);
+                // final userPreferences = UserPreferences();
+                // userPreferences.user = User.fromJson(_formUser.value);
+                // final route =
+                //     MaterialPageRoute(builder: (context) => LoginPage());
+                // Navigator.push(context, route);
               }
             },
             child: Container(
