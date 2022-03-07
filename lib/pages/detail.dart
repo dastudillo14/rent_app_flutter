@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rent_app/pages/home.dart';
+import 'package:rent_app/shared/widget.dart';
 
 class DetailPage extends StatefulWidget {
   final int index;
@@ -76,7 +77,7 @@ class _DetailPageState extends State<DetailPage> {
                 //fontSize: 24
               ))
         ]),
-        _apartmentPrice(),
+        apartmentPrice(context),
         const SizedBox(
           height: 10,
         ),
@@ -106,24 +107,7 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  Widget _apartmentPrice() {
-    return Row(
-      children:  [
-        Text(
-          "\$250",
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-          color: Theme.of(context).primaryColor ),
-        ),
-        Text("/Month",
-            style: TextStyle(
-              color: Colors.black26,
-              fontWeight: FontWeight.w100,
-            )),
-      ],
-    );
-  }
+  
 
   Widget _rowDetail() {
     return Row(

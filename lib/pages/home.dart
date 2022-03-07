@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rent_app/pages/detail.dart';
 import 'package:rent_app/pages/sign_up.dart';
+import 'package:rent_app/shared/widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,7 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,21 +44,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _rowTitle() {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children:  [
-          const Text("Explore",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 30)),
-          IconButton(onPressed: (){
-             final route = MaterialPageRoute(
-          builder: (context) => SignUpPage()
-        );
-        Navigator.push(context, route);
-          }, icon: Icon(Icons.account_circle))
-        ]);
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      const Text("Explore",
+          style: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.w600, fontSize: 30)),
+      IconButton(
+          onPressed: () {
+            final route = MaterialPageRoute(builder: (context) => SignUpPage());
+            Navigator.push(context, route);
+          },
+          icon: Icon(Icons.account_circle))
+    ]);
   }
 
   Widget _rowSubtitle() {
@@ -92,7 +88,7 @@ class _HomePageState extends State<HomePage> {
         const SizedBox(
           height: 10,
         ),
-        _apartmentPrice(),
+        apartmentPrice(context),
         const SizedBox(
           height: 5,
         ),
@@ -124,13 +120,12 @@ class _HomePageState extends State<HomePage> {
 
   Widget _apartmenList() {
     List items = [1, 2, 3, 4, 5, 6, 7];
-    List<Widget> children = items.map(
-      (e) => _apartmenCard(e),
-    ).toList();
-    return Wrap(
-      runSpacing: 15,
-      children: children
-    );
+    List<Widget> children = items
+        .map(
+          (e) => _apartmenCard(e),
+        )
+        .toList();
+    return Wrap(runSpacing: 15, children: children);
   }
 
   Widget _apartmenCard(int index) {
@@ -138,7 +133,7 @@ class _HomePageState extends State<HomePage> {
       onTap: () {
         //showDialog(context: context, builder: (context) => DetailPage(), useSafeArea: false);
         final route = MaterialPageRoute(
-          builder: (context) => DetailPage(index:index),
+          builder: (context) => DetailPage(index: index),
         );
         Navigator.push(context, route);
       },
@@ -148,11 +143,12 @@ class _HomePageState extends State<HomePage> {
         children: [
           Column(
             children: [
-              SizedBox(                
+              SizedBox(
                 child: Hero(
                   tag: "IMG$index",
                   child: ClipRRect(
-                      child: Image.network("https://picsum.photos/seed/${index}/100"),
+                      child: Image.network(
+                          "https://picsum.photos/seed/${index}/100"),
                       borderRadius: BorderRadius.circular(25)),
                 ),
               ),
@@ -180,31 +176,12 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 5,
                 ),
-                _apartmentPrice(),
+                apartmentPrice(context),
               ],
             ),
           )
         ],
       ),
-    );
-  }
-
-  Widget _apartmentPrice() {
-    return Row(
-      children:  [
-        Text(
-          "\$250",
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Theme.of(context).primaryColor ),
-        ),
-        Text("/Month",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w200,
-            )),
-      ],
     );
   }
 }
